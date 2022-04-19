@@ -1,6 +1,6 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome USER_NAME,
+Welcome AdamBoley,
 
 This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
 
@@ -29,3 +29,20 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 
 -----
 Happy coding!
+
+
+Index.js, package.json, Procfile, controllers folder and views folder do not need to be changed
+
+This project uses the Google Drive API and Google Sheets API
+Google Drive API:
+Service account name: Love-Sandwiches
+Service account ID: love-sandwiches
+
+Creds.json is the file generated from the Google Drive API
+
+The love_sandwiches_spreadsheet that this project accesses and updates is in my personal Google Drive
+It has been shared with the Client Email value in the creds.json file
+
+Creds.json has been added to the gitignore file, so it will never been shared to Github and thus it and its contents will remain secret
+
+
