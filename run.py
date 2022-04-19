@@ -46,6 +46,8 @@ def get_sales_data():
         if validate_data(sales_data): # same as saying if validate_data(sales_data) == True
             print('data is valid')
             break # breaks out of while loop
+    
+    return sales_data # returns entered and converted data to function caller - the variable called data
 
 
 def validate_data(values): # values here is sales_data
@@ -66,4 +68,23 @@ def validate_data(values): # values here is sales_data
     return True # returns true to the if statement in the get_sales_data function
     #print(sales_data)
 
-get_sales_data()
+
+
+def update_sales_worksheet(data): # takes in the variable called data, which is the same as sales_data, the list created below this function
+    """
+    Update sales worksheet in love_sandwiches_spreadsheet. add new row with the list data provided
+    """
+    print('Updating sales worksheet...\n')
+
+    sales_worksheet = SHEET.worksheet('sales') # uses SHEET variable defined above and the gspread worksheet() method to access the sales worksheet
+
+    sales_worksheet.append_row(data)
+
+    print('sales worksheet updated \n')
+
+
+data = get_sales_data() # calls get_sales_data function
+
+sales_data = [int(number) for number in data] # does the same thing as on line 60, but actually converts into a list this time
+
+update_sales_worksheet(sales_data)
