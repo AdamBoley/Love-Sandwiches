@@ -62,3 +62,4 @@ This project needs the entire gspread library, so `import gspread` has been adde
 It also needs the Credentials class from the service_account function, so `from google.oauth2.service_account import Credentials` has been added to the run.py file
 
 
+This is a command line project, so the terminal is run using the `python3 run.py` command. This runs the code in the run.py file. 
