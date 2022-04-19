@@ -46,18 +46,19 @@ def get_sales_data():
     validate_data(sales_data)
 
 
-def validate_data(sales_data):
+def validate_data(values): # values here is sales_data
     """
     Checks whether sales_data has 6 values
     Converts all of the string values of the sales_data list into integers
     Raises an error if there are not 6 values
     """
     try:
-        if len(sales_data) != 6: # checks if the sales_data variable has exactly 6 values, triggers if not 6 values
-            raise ValueError (f'6 values are required. You entered {len(sales_data)}')
+        [int(value) for value in values] # tries to convert entered sales data from strings into integers
+        if len(values) != 6: # checks if the sales_data variable has exactly 6 values, triggers if not 6 values
+            raise ValueError (f'6 values are required. You entered {len(values)}') # this is inserted as the value of e, below
 
     except ValueError as e:
-        print(f'Invalid data: {e}. Please try again')
+        print(f'Invalid data: {e}. Please try again') # inserts the ValueError f-string from the try statement
 
     #print(sales_data)
 
