@@ -32,18 +32,20 @@ def get_sales_data():
     """
     Get Sales figures from the user
     """
+    while True: # prevents having to restart program each time an error occurs
+        print('Please enter sales data from the last market day')
+        print('This data should conisist of 6 figures, each separated by commas')
+        print('Example sales data: 10,20,35,29,13,19\n')
 
-    print('Please enter sales data from the last market day')
-    print('This data should conisist of 6 figures, each separated by commas')
-    print('Example sales data: 10,20,35,29,13,19\n')
+        data_string = input('Enter your data here: ')
+        #print(f'The data provided is {data_string}') # reprints user input as a check
 
-    data_string = input('Enter your data here: ')
-    #print(f'The data provided is {data_string}') # reprints user input as a check
+        sales_data = data_string.split(',') # grabs data_string and splits it up into a list at the commas
+        #print(sales_data)
 
-    sales_data = data_string.split(',') # grabs data_string and splits it up into a list at the commas
-    #print(sales_data)
-
-    validate_data(sales_data)
+        if validate_data(sales_data): # same as saying if validate_data(sales_data) == True
+            print('data is valid')
+            break # breaks out of while loop
 
 
 def validate_data(values): # values here is sales_data
@@ -59,7 +61,9 @@ def validate_data(values): # values here is sales_data
 
     except ValueError as e:
         print(f'Invalid data: {e}. Please try again') # inserts the ValueError f-string from the try statement
+        return False # returns False to the get_sales_data function
 
+    return True # returns true to the if statement in the get_sales_data function
     #print(sales_data)
 
 get_sales_data()
