@@ -45,4 +45,20 @@ It has been shared with the Client Email value in the creds.json file
 
 Creds.json has been added to the gitignore file, so it will never been shared to Github and thus it and its contents will remain secret
 
+Since the creds.json file is not shared with Github, it effectively only exists in the Gitpod workspace
+
+Hence, new workspaces will not contain the creds.json file, so it will need to be re-uploaded. This particular workspace has been pinned, so use that to access the workspace and preserve the creds.json file
+
+This project uses two external Python libraries - google-auth and gspread
+
+Google-auth uses the creds.json file to set up the authenication
+
+gspread is used to access and update the information in the love_sandwiches_spreadsheet file
+
+These libraries are installed with the terminal command `pip3 install gspread google-auth`
+
+This project needs the entire gspread library, so `import gspread` has been added to the run.py file
+
+It also needs the Credentials class from the service_account function, so `from google.oauth2.service_account import Credentials` has been added to the run.py file
+
 
