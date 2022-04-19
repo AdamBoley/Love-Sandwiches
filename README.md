@@ -63,3 +63,28 @@ It also needs the Credentials class from the service_account function, so `from 
 
 
 This is a command line project, so the terminal is run using the `python3 run.py` command. This runs the code in the run.py file. 
+
+User Stories - what should the project do?
+
+1. Collect sales data from the user
+
+2. Add sales data into worksheet
+
+3. Calculate surplus numbers
+
+4. Add surplus data to wurplus worksheet
+
+5. Calculate the average sales for the last 5 days
+
+6. Add calculated stock numbers into the stock worksheet
+
+7. Print stock recommendations
+
+8. Check that all user inputs are valid
+
+
+Collecting sales data from the user
+
+The project is set to expect sales data from the user in the csv format - comma-separated values
+
+This allows data to be saved in a table format - useful for spreadsheets
