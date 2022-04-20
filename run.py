@@ -97,8 +97,22 @@ def calculate_surplus_data(sales_row): # sales_row argument is the same as sales
 
     # pprint(stock) # uses pprint method of external pprint library 
     stock_row = stock[-1] # slices the last value, -1 being the index of the last list in the stock list, which is a list of lists
+    # the .row_values(row-number) method is also a viable, provided that you have only a single row of data to access, or you want to access a particular row
 
-    print(stock_row)
+    # print(f'stock_row: {stock_row}')
+    # print(f'sales_row: {sales_row}')
+
+    surplus_data = [] # empty list to hold surplus data
+    stock_row = [int(stock) for stock in stock_row] # converts the stock_row list from a list of strings into a list of integers
+    for stock, sales in zip(stock_row, sales_row):
+        surplus = stock - sales # instead of using the converter on line 106, we could instead wrap the singular variable called stock in the int() method, which would convert the variable when it is accessed
+        surplus_data.append(surplus)
+        # this is very clever - the zip method is used here to iterate through two lists at the same time
+        # each item in the sales list is subtracted from the corresponding item in the stock list, with the result held in the surplus variable
+        # the value of the surplus variable is then appended to the empty surplus_data variable, which is an empty list
+    
+    return surplus_data # returns surplus_data to the new_surplus_data variable in the main() function
+
 
 
 def main():
@@ -108,7 +122,8 @@ def main():
     data = get_sales_data() # calls get_sales_data function
     sales_data = [int(number) for number in data] # does the same thing as on line 60, but actually converts into a list this time
     update_sales_worksheet(sales_data)
-    calculate_surplus_data(sales_data)
+    new_surplus_data = calculate_surplus_data(sales_data)
+    print(new_surplus_data)
 
 print('Welcome to Love Sandwiches Data Automation')
 main() # the function caller for main must be below where the function is defined, or the Python interpreter won't be able to execute
