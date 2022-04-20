@@ -4,6 +4,7 @@
 
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -82,9 +83,33 @@ def update_sales_worksheet(data): # takes in the variable called data, which is 
 
     print('sales worksheet updated \n')
 
+def calculate_surplus_data(sales_row): # sales_row argument is the same as sales_data
+    """
+    Compare sales data with stock data and calculate the surplus of each sandwich type
+    The surplus is the stock number minus the sales number
+    Postive surplus numbers indicate when supply has been greater than demand, and sandwiches are thrown away
+    Negative surplus numbers indicate when demand has outstripped demand, and sandwiches have been made fresh to meet that demand
+    """
 
-data = get_sales_data() # calls get_sales_data function
+    print('Calculating surplus data...\n')
 
-sales_data = [int(number) for number in data] # does the same thing as on line 60, but actually converts into a list this time
+    stock = SHEET.worksheet('stock').get_all_values() # generates a list of lists - each row of the spreadsheet is a list, and these are contained as list items in another list
 
-update_sales_worksheet(sales_data)
+    # pprint(stock) # uses pprint method of external pprint library 
+    stock_row = stock[-1] # slices the last value, -1 being the index of the last list in the stock list, which is a list of lists
+
+    print(stock_row)
+
+
+def main():
+    """
+    Contains all main program functions
+    """
+    data = get_sales_data() # calls get_sales_data function
+    sales_data = [int(number) for number in data] # does the same thing as on line 60, but actually converts into a list this time
+    update_sales_worksheet(sales_data)
+    calculate_surplus_data(sales_data)
+
+print('Welcome to Love Sandwiches Data Automation')
+main() # the function caller for main must be below where the function is defined, or the Python interpreter won't be able to execute
+

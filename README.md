@@ -83,8 +83,22 @@ User Stories - what should the project do?
 8. Check that all user inputs are valid
 
 
-Collecting sales data from the user
+Collecting sales data from the user:
 
 The project is set to expect sales data from the user in the csv format - comma-separated values
 
 This allows data to be saved in a table format - useful for spreadsheets
+
+
+In the spreadsheet, the sales worksheet contains the numbers of sandwiches sold on a particular day
+
+The stock worksheet contains the numbers of sandwiches made before a market day
+
+The surplus worksheet contains the numbers of sandwiches either made fresh to meet higher-than-expected demand (demand has outstripped supply), or thrown away at the end of the day due to lower-than-expected demand (supply is greater than demand)
+
+Negative numbers indicate the number of fresh sandwiches made
+
+Positive numbers indicate the number of sandwiches thrown away
+
+Hence, the stock - the sales = the surplus
+
