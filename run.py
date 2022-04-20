@@ -114,6 +114,18 @@ def calculate_surplus_data(sales_row): # sales_row argument is the same as sales
     return surplus_data # returns surplus_data to the new_surplus_data variable in the main() function
 
 
+def update_surplus_worksheet(data): # data here is the same as new_surplus_data
+    """
+    Update surplus worksheet in love_sandwiches_spreadsheet - add new row with the data provided
+    """
+    print('Updating surplus worksheet...\n')
+
+    surplus_worksheet = SHEET.worksheet('surplus')
+
+    surplus_worksheet.append_row(data)
+
+    print('Surplus worksheet updated \n')
+
 
 def main():
     """
@@ -124,6 +136,7 @@ def main():
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surplus_data(sales_data)
     print(new_surplus_data)
+    update_surplus_worksheet(new_surplus_data)
 
 print('Welcome to Love Sandwiches Data Automation')
 main() # the function caller for main must be below where the function is defined, or the Python interpreter won't be able to execute
