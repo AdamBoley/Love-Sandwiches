@@ -155,6 +155,26 @@ def get_last_five_sales_entries():
     return columns
 
 
+def calculate_stock_data(data): # data here is the sliced columns returned from the get_last_five_sales_entries
+    """
+    Calculate the average sales over the last 5 days 
+    """
+    print('Calculating stock data...\n')
+
+    new_stock_data = []
+
+    for column in data: # data is a list of lists, so column is a list that corresponds to each column retrieved from the worksheet
+        int_column = [int(num) for num in column] # converts string values in each column to integers
+        average = sum(int_column) / len(int_column) # sum adds the values of the list together to give a total, len gets the number of items in the list
+        # since each column can only consist of 5 values, sum(int_column) / 5 would also work, but using the len() method allows for 
+        # flexibility is a different average needs to be calculated, such as the average over the last 7 days, for example
+        stock_num = average * 1.1
+        stock_num = round(stock_num)
+        new_stock_data.append(stock_num)
+    
+    return new_stock_data
+
+
 def main():
     """
     Contains all main program functions
@@ -165,7 +185,10 @@ def main():
     new_surplus_data = calculate_surplus_data(sales_data)
     print(new_surplus_data)
     update_worksheet(new_surplus_data, 'surplus')
+    sales_columns = get_last_five_sales_entries()
+    recommended_stock = calculate_stock_data(sales_columns)
+    update_worksheet(recommended_stock, 'stock')
 
 print('Welcome to Love Sandwiches Data Automation')
-#main() # the function caller for main must be below where the function is defined, or the Python interpreter won't be able to execute
-sales_columns = get_last_five_sales_entries()
+main() # the function caller for main must be below where the function is defined, or the Python interpreter won't be able to execute
+
