@@ -71,17 +71,42 @@ def validate_data(values): # values here is sales_data
 
 
 
-def update_sales_worksheet(data): # takes in the variable called data, which is the same as sales_data, the list created below this function
+#def update_sales_worksheet(data): # takes in the variable called data, which is the same as sales_data, the list created below this function
+ #   """
+  #  Update sales worksheet in love_sandwiches_spreadsheet. add new row with the list data provided
+   # """
+    #print('Updating sales worksheet...\n')
+
+    #sales_worksheet = SHEET.worksheet('sales') # uses SHEET variable defined above and the gspread worksheet() method to access the sales worksheet
+
+    #sales_worksheet.append_row(data)
+
+    #print('sales worksheet updated \n')
+
+
+#def update_surplus_worksheet(data): # data here is the same as new_surplus_data
+ #   """
+ #   Update surplus worksheet in love_sandwiches_spreadsheet - add new row with the data provided
+ #   """
+ #   print('Updating surplus worksheet...\n')
+
+#    surplus_worksheet = SHEET.worksheet('surplus')
+
+ #   surplus_worksheet.append_row(data)
+
+  #  print('Surplus worksheet updated \n')
+
+
+def update_worksheet(data, worksheet): # worksheet here refers to any of the three worksheets in the love_sandwiches_spreadsheet
     """
-    Update sales worksheet in love_sandwiches_spreadsheet. add new row with the list data provided
+    Receives a list of integers to be inserted into a worksheet
+    Updates relevant worksheet with the data provided
     """
-    print('Updating sales worksheet...\n')
+    print(f'Updating {worksheet} worksheet...\n')
+    worksheet_to_update = SHEET.worksheet(worksheet)
+    worksheet_to_update.append_row(data)
+    print(f'{worksheet} worksheet updated successfully\n')
 
-    sales_worksheet = SHEET.worksheet('sales') # uses SHEET variable defined above and the gspread worksheet() method to access the sales worksheet
-
-    sales_worksheet.append_row(data)
-
-    print('sales worksheet updated \n')
 
 def calculate_surplus_data(sales_row): # sales_row argument is the same as sales_data
     """
@@ -114,17 +139,7 @@ def calculate_surplus_data(sales_row): # sales_row argument is the same as sales
     return surplus_data # returns surplus_data to the new_surplus_data variable in the main() function
 
 
-def update_surplus_worksheet(data): # data here is the same as new_surplus_data
-    """
-    Update surplus worksheet in love_sandwiches_spreadsheet - add new row with the data provided
-    """
-    print('Updating surplus worksheet...\n')
 
-    surplus_worksheet = SHEET.worksheet('surplus')
-
-    surplus_worksheet.append_row(data)
-
-    print('Surplus worksheet updated \n')
 
 
 def main():
@@ -133,10 +148,10 @@ def main():
     """
     data = get_sales_data() # calls get_sales_data function
     sales_data = [int(number) for number in data] # does the same thing as on line 60, but actually converts into a list this time
-    update_sales_worksheet(sales_data)
+    update_worksheet(sales_data, 'sales')
     new_surplus_data = calculate_surplus_data(sales_data)
     print(new_surplus_data)
-    update_surplus_worksheet(new_surplus_data)
+    update_worksheet(new_surplus_data, 'surplus')
 
 print('Welcome to Love Sandwiches Data Automation')
 main() # the function caller for main must be below where the function is defined, or the Python interpreter won't be able to execute
