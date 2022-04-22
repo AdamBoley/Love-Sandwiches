@@ -198,6 +198,24 @@ def calculate_stock_data(data):
     return new_stock_data
 
 
+def get_stock_values(data):
+    """
+    Creates a dictionary of each sandwiches with the recommended stock of each sandwich
+    """
+    headings = SHEET.worksheet('stock').row_values(1) # creates list of column headings
+    #dictionary = dict.fromkeys(headings, data)
+    #dictionary = {}  # creates empty dictionary for later filling
+    #for heading in headings: # nested loop
+     #   for value in data:
+      #      dictionary[heading] = value # creates key:value pair
+       #     data.remove(value) # removes each value of the data list as that value is added to the dictionary
+        #    break
+    dictionary = {headings[i]: data[i] for i in range(len(headings))}  # Building dictionary from headings variable and data variable using dictionary comprehension
+
+    return dictionary
+
+
+
 def main():
     """
     Contains all main program functions
@@ -212,7 +230,11 @@ def main():
     sales_columns = get_last_five_sales_entries()
     recommended_stock = calculate_stock_data(sales_columns)
     update_worksheet(recommended_stock, 'stock')
+    stock_values = get_stock_values(recommended_stock)
+
+    print(stock_values)
 
 
 print('Welcome to Love Sandwiches Data Automation')
 main()  # the function caller for main must be below where the function is defined, or the Python interpreter won't be able to execute
+
